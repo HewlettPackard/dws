@@ -187,14 +187,14 @@ func (r *WorkflowReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 	updateNeeded := false
 	driverDone, err := checkDriverStatus(workflow)
 	if err != nil {
-		// Update Status only if not already in an ERROR state
+		// Update Status only if not already in an error state.
 		if workflow.Status.State != workflow.Spec.DesiredState ||
 			workflow.Status.Ready != ConditionFalse ||
-			workflow.Status.Reason != "ERROR" {
-			log.Info("Workflow state transitioning to " + "ERROR")
+			workflow.Status.Reason != "Error" {
+			log.Info("Workflow state transitioning to Error")
 			workflow.Status.State = workflow.Spec.DesiredState
 			workflow.Status.Ready = ConditionFalse
-			workflow.Status.Reason = "ERROR"
+			workflow.Status.Reason = "Error"
 			workflow.Status.Message = err.Error()
 			updateNeeded = true
 		}
