@@ -27,7 +27,7 @@ spec:
       type: boolean
     - description: Indicates achievement of current state
       jsonPath: .status.reason
-      name: STATUSREASON
+      name: STATUS
       type: string
     - jsonPath: .metadata.creationTimestamp
       name: AGE
